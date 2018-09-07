@@ -21,6 +21,40 @@ void        print_table(TABLE*t)
   }
 }
 
+/* テーブルの状態を表示(Excel用) */
+void        print_table_tab(TABLE*t, FILE*fp)
+{
+  int         i;
+
+  for(i = 0; i < 9 * 9; i++){
+    if(t[i].fixed)
+      fprintf(fp, "%d", t[i].fixed);
+    else
+      fprintf(fp, " ");
+
+    if(0 == (i + 1) % 9)
+      fprintf(fp, "\n");
+    else
+      fprintf(fp, "\t");
+  }
+}
+
+/* テーブルの状態を表示(投稿用) */
+void        print_table_0(TABLE*t, FILE*fp)
+{
+  int         i;
+
+  for(i = 0; i < 9 * 9; i++){
+    if(t[i].fixed)
+      fprintf(fp, "%d", t[i].fixed);
+    else
+      fprintf(fp, "0");
+
+    if(0 == (i + 1) % 9)
+      fprintf(fp, "\n");
+  }
+}
+
 /* テーブルの状態を詳しく表示 */
 void        print_table_detail(TABLE*t)
 {
